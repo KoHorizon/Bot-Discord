@@ -55,26 +55,23 @@ module.exports = (io) => {
       case "donation":
         Commands.getDonation(message);
         break;
-      //   case "play":
-      //     Music.Play(message);
-      //     break;
       case "cron1":
         if (serverQueue.cron.cron1) {
-          return message.reply("Un cron est deja actif");
+          return message.reply("Le cron1 est deja actif");
         }
         serverQueue.cron.cron1 = true;
         cron.schedule("*/1 * * * *", () => {
-          message.channel.send("Gros test Cron");
+          message.channel.send("Gros test Cron1");
         });
         message.reply("Tu viens de lancer le cron1");
         break;
       case "cron2":
         if (serverQueue.cron.cron2) {
-          return message.reply("Un cron est deja actif");
+          return message.reply("Le cron2 est deja actif");
         }
         serverQueue.cron.cron2 = true;
         cron.schedule("*/1 * * * *", () => {
-          message.channel.send("Gros test Cron");
+          message.channel.send("Gros test Cron2");
         });
         message.reply("Tu viens de lancer le cron2");
         break;

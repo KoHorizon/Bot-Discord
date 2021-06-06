@@ -4,7 +4,7 @@ const newsAPI = require("../apis/NewsAPI");
 const Discord = require("discord.js");
 
 module.exports.showTasksNumber = (channel) => {
-  cron.schedule("* */1 * * *", () => {
+  cron.schedule("*/60 * * * *", () => {
     Task.findAll().then((tasks) => {
       channel.send(
         `Il y a actuellement ${tasks.length} tache${
@@ -16,7 +16,7 @@ module.exports.showTasksNumber = (channel) => {
 };
 
 module.exports.showNews = (channel) => {
-  cron.schedule("* */1 * * *", () => {
+  cron.schedule("*/60 * * * *", () => {
     newsAPI.getRandomNews().then((res) => {
       const articles = res.data.articles;
       const n = Math.floor(Math.random() * 100) % articles.length;

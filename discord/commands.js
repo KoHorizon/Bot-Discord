@@ -123,5 +123,5 @@ module.exports.getCrackSite = (message) => {
 }
 
 module.exports.getDonation = (message) => {
-    message.reply(`Please donate something 'https://paypal.me/rinoshan?locale.x=fr_FR'`);
+    message.reply(`Please donate something 'https://www.paypal.com/paypalme/rinoshan'`);
 }
