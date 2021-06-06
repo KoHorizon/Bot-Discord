@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i|Roboto:500" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <script src="https://cdn.socket.io/4.1.1/socket.io.min.js" integrity="sha384-cdrFIqe3RasCMNE0jeFG9xJHog/tgOVC1E9Lzve8LQN1g5WUHo0Kvk1mawWjxX7a" crossorigin="anonymous"></script>
+</head>
+<body class="is-boxed has-animations">
+    <div class="body-wrap boxed-container">
+
+        <main>
+            <section class="hero text-center">
+                <div class="container-sm">
+                    <div class="hero-inner">
+                        <h1 class="hero-title h2-mobile mt-0 is-revealing">Liste de tâches</h1>
+                        <p class="hero-paragraph is-revealing" id="tasks">
+
+                            <% tasks.forEach((task) => { %>
+                                <span class="id<%=task.id%>"> <input type="checkbox" value="<%=task.id%>" class="idcheck<%=task.id%> checkbox" <% if (task.finished) {%> checked <%}  %>> <%= task.name %> <button class="delete-task">Delete <%=task.id%></button><br></span>
+                                <!-- <span><%= task.name %>   <boutton><%= task.id %></boutton> <br> </span> -->
+                            <% }); %>
+
+                        </p>
+                        <div class="hero-form newsletter-form field field-grouped is-revealing">
+                            <div class="control control-expanded">
+                                <input class="input" type="text" name="task" placeholder="Votre tâche" id="input-task">
+                            </div>
+                            <div class="control">
+                                <a class="button button-primary button-block button-shadow" id="create-task" href="#" >Créer une tâche</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script>
+
+        var socket = io();
+
+        socket.on('TASKS-CREATED', (data) =>{
+            console.log("NEW TASK HAS BEEN CREATED", data)
+            let task = document.createElement("span")
+            task.innerHTML = `${data.name} <br>`
+            document.querySelector('#tasks').appendChild(task)
+        })
+        
+        socket.on('TASKS-DELETED', (data) =>{
+            console.log("All Task have been deleted")
+
+            let divToDelete = document.querySelector('#tasks')
+            divToDelete.parentNode.removeChild(divToDelete);
+        })
+
+        function deleteListener(e){
+            e.addEventListener('click',(e)=>{
+                let id = e.target.textContent.substr(7)
+                fetch(`http://localhost:3000/tasks/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        'Content-Type': "application/x-www-form-urlencoded"
+                    },
+                })
+            })
+        }
+
+
+
+        window.addEventListener('DOMContentLoaded', () => {
+            let input = document.getElementById('input-task')
+            
+            document.querySelector("#create-task").addEventListener('click', (e) => {
+                let task = document.querySelector("input[name=task]").value
+                input.value = "";
+
+                fetch("http://localhost:3000/tasks", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': "application/x-www-form-urlencoded"
+                    },
+                    body: `name=${task}&user_id=1`
+                })
+            })
+            
+            document.querySelectorAll('.delete-task').forEach((e)=>{
+                deleteListener(e)
+            })
+
+        })
+
+    </script>
+
+    <script src="/js/main.min.js"></script>
+</body>
+</html>
