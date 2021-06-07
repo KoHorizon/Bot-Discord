@@ -9,10 +9,32 @@
 - !task-destroy (<! Attention !>  Detruit toute les datas 'tasks' dans la bdd)
      
      
+ -------------------------------------------------------------------------------------
+
 
 ### Commande Pour interagire avec une API Externe
 
 | Commande  | Argument possible | Argument possible |
 | ------------- | ------------- | ------------- |
-| !btc | eur | usd  |
-| !eth | eur | usd |
+| `!btc`   | eur | usd  |
+| `!eth` | eur | usd |
+| `!ada` | eur | usd |
+
+
+> Exemple ：!btc eur
+
+
+### Commande supplémentaire
+
+
+- !crack-games (Te donne un site fiable pour dl des jeux crack)
+- !donation (Please Donate)
+- !cron1 (Lance un cron) (Une fois lancé il ne peux pas être relancé )
+- !cron2 (Lance un second cron) (Une fois lancé il ne peux pas être relancé )
+
+
+ -------------------------------------------------------------------------------------
+ 
+ ## CRON
+ Une fois l'application lancé toute les heurs, le nombre de tasks serons rappelé.
+ Et un article random, en rapport avec la tech sera fourni.
