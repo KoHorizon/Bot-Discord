@@ -36,5 +36,5 @@
  -------------------------------------------------------------------------------------
  
  ## CRON
- Une fois l'application lancé toute les heurs, le nombre de tasks serons rappelé.
- Et un article random, en rapport avec la tech sera fourni.
+ Une fois l'application lancé. Toute les heurs, le nombre de tasks serons rappelé.
+ Un article random, en rapport avec la tech sera fourni.
