@@ -27,7 +27,6 @@
 ### Commande supplémentaire
 
 
-- !crack-games (Te donne un site fiable pour dl des jeux crack)
 - !donation (Please Donate)
 - !cron1 (Lance un cron) (Une fois lancé il ne peux pas être relancé )
 - !cron2 (Lance un second cron) (Une fois lancé il ne peux pas être relancé )
